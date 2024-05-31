@@ -1,23 +1,33 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-struct {
-} variaveis;
+struct variaveis{
+};
 
-// Funcao que imprimea mensagem de escolha
+class Notes{ //Classe notas que contém as informações de cada nota como objetos
+private:
+    int idTask;
+    string title;
+    string about;
+    int date;
+    string status;
+public:
+    Notes(){}
+};
+
 void opcaoUm(){
     cout << "Voce escolheu a opcao 1." << endl;
 }
 void opcaoDois(){
     cout << "Voce escolheu a opcao 2." << endl;    
 }
-
 void opcaoTres(){
     cout << "Voce escolheu a opcao 3." << endl;
 }
-
 int main(){
+    vector<Notes> data; 
     int escolha;
 
     do{
@@ -31,18 +41,10 @@ int main(){
 
         // switch case para as opcoes do menu
         switch (escolha){
-        case 1:
-            opcaoUm();
-            break;
-        case 2:
-            opcaoDois();
-            break;
-        case 3:
-            opcaoTres();
-            break;
-        default:
-            cout << "Opcao Invalida. Tente novamente." << endl;
-            break;
+            case 1: opcaoUm(); break;
+            case 2: opcaoDois(); break;
+            case 3: opcaoTres(); break;
+            default: cout << "Opcao Invalida. Tente novamente." << endl; break;
         }
     }while(escolha != 4);
     return 0;
