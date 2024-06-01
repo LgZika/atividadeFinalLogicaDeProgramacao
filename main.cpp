@@ -19,7 +19,7 @@ class Task{ // Classe Tasks que contém as informações de cada nota como objet
         }
         // Notes(int id, string t, string d, int dma, string s) : idTask(id), title(t), description(d), date(dma), status(s) {}
 
-        int getIdTask(){ // função get para retonar o id da tarefa
+        int getId(){ // função get para retonar o id da tarefa
             return idTask;
         }
 
