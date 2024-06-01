@@ -65,12 +65,19 @@ void createTask(vector<Task>& task){ // função para adicionar tarefas
 
     cout << "Add new Task" << endl;
     cout << "ID: " << *idTask << endl;
+
     cout << "Title: ";
-    cin >> *title; 
+    cin.ignore();
+    getline(cin, *title);
+
     cout << "Description: ";
-    cin >> *description;
+    cin.ignore();
+    getline(cin, *description);
+    
     cout << "Deadline: ";
+    cin.ignore();
     cin >> *date;
+
     while(true){
         cout << "Status (1 - Pending, 2 - In Progress, 3 - Completed): ";
         cin >> *status;
@@ -89,15 +96,29 @@ void createTask(vector<Task>& task){ // função para adicionar tarefas
     }
     cout << "Task added successfully!" << endl;
 
-    task.push_back(Task(*idTask, *title, *description, *date, *status));
-
+    task.push_back(Task(*idTask, *title, *description, *date, *status)); // Insere os valores dos atributos do objeto por meio da 
+                                                                         // função construtora da classe
     delete idTask, date, title, description, status;
 }
 void editTask(vector<Task>& task){
     cout << "Voce escolheu a opcao 2." << endl;    
 }
 void deleteTask(vector<Task>& task){
-    cout << "Voce escolheu a opcao 3." << endl;
+    int *idTask = new int;
+
+    cout << "Enter the Task ID to delete it: ";
+    cin >> *idTask;
+
+    for(size_t i = 0; i < task.size(); ++i){
+    	if(task[i].getId() == *idTask){
+        	task.erase(task.begin() + i);
+            cout << "Deleted Successfully" << endl;
+        	break;
+        }
+	}
+    cout << "Delete Failed! Task not found." << endl;
+
+    delete idTask;
 }
 void searchTask(vector<Task>& task){
     cout << "Voce escolheu a opcao 4." << endl;
