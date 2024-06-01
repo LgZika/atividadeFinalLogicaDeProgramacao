@@ -108,7 +108,7 @@ void filterTask(vector<Task>& task){
 
 void showTask(vector<Task>& task){ // função para exibir as tarefas
     for (size_t i = 0; i < task.size(); i++){
-        cout << "ID: " << task[i].getIdTask() << endl;
+        cout << "ID: " << task[i].getId() << endl;
         cout << "Title: " << task[i].getTitle() << endl;
         cout << "Description: " << task[i].getDescription() << endl;
         cout << "Deadline: " << task[i].getDate() << endl;
