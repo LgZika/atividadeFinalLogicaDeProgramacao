@@ -5,11 +5,11 @@ using namespace std;
 
 class Task{ // Classe Tasks que contém as informações de cada nota como objetos
     private: // private, apenas os objetos e métodos da classe podem acessar
-        int id, date;
-        string title, description, status;
+        int id;
+        string title, description, status, date;
 
     public: // public, pode ser acessado em qualquer escopo pelo objeto do tipo da classe
-        Task(int id, string title, string description, int date, string status){ // função construtora da classe Task
+        Task(int id, string title, string description, string date, string status){ // função construtora da classe Task
             this->id = id; 
             this->title = title;
             this->description = description;
@@ -27,11 +27,11 @@ class Task{ // Classe Tasks que contém as informações de cada nota como objet
             return id;
         }
 
-        void setDate(int date){ // função set para informar valor para a data da tarefa
+        void setDate(string date){ // função set para informar valor para a data da tarefa
             this->date = date;
         }
 
-        int getDate(){ // função get para retornar a data da tarefa
+        string getDate(){ // função get para retornar a data da tarefa
             return date;
         }
 
@@ -62,7 +62,7 @@ class Task{ // Classe Tasks que contém as informações de cada nota como objet
 
 void createTask(vector<Task>& task){ // função para adicionar tarefas
     int *id = new int(task.size());
-    int *date = new int;
+    string *date = new string;
     string *title = new string;
     string *description = new string;
     string *status = new string;
@@ -113,14 +113,14 @@ void showTask(vector<Task>& task){ // função para exibir as tarefas
         cout << endl;
     }
     system("pause");
+    system("clear||cls");
 } 
 
 void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
     int *id = new int;
     bool *valid = new bool(false);
-    string *str = new string;
-    int *num = new int;
     int *choice = new int;
+    string *str = new string;
 
     cout << "Enter the Task ID to edit it: ";
     cin >> *id;
@@ -165,8 +165,8 @@ void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
                     case 3: 
                         cout << "Current deadline: " << task[i].getDate() << endl;
                         cout << "Enter the new deadline: ";
-                        cin >> *num;
-                        task[i].setDate(*num);
+                        cin >> *str;
+                        task[i].setDate(*str);
                         break;
                     case 4: 
                         while(true){
@@ -196,7 +196,6 @@ void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
                         break;
                 }
             }while(choice != 0);
-            delete choice;
         	break;
         }
 	}
@@ -205,10 +204,10 @@ void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
     }else{
         cout << "Edit Failed! Task not found." << endl;
     }
-    delete id, valid;
+    delete id, valid, choice;
 }
 
-void deleteTask(vector<Task>& task){
+void deleteTask(vector<Task>& task){ // função para deletar a tarefa indicada
     int *id = new int;
     bool *valid = new bool(false);
 
@@ -225,7 +224,6 @@ void deleteTask(vector<Task>& task){
         	break;
         }
 	}
-    
     if(*valid){
         cout << "Deleted Successfully" << endl;
     }else{
@@ -233,14 +231,70 @@ void deleteTask(vector<Task>& task){
     }
     delete id, valid;
 }
-void searchTask(vector<Task>& task){
-    cout << "Voce escolheu a opcao 4." << endl;
+void searchTask(vector<Task>& task){ // função para pesquisar tarefas por ID e Nome
+    bool *valid = new bool(false);
+    int *choice = new int;
+    int *id = new int;
+    string *title = new string;
+
+    while(true){
+        // menu padrão da função search
+        cout << "Search for tasks by" << endl;
+        cout << "1. Task ID" << endl;
+        cout << "2. Task Title"<< endl;
+        cout << "Choose a method: ";
+        cin >> *choice;
+    
+        if(*choice == 1){ // pesquisa por ID
+            cout << endl;
+            cout << "Enter the ID to search: ";
+            cin >> *id;
+            for(size_t i = 0; i < task.size(); i++){
+                if(task[i].getId() == *id){
+                    cout << endl;
+                    cout << "ID: " << task[i].getId() << endl;
+                    cout << "Title: " << task[i].getTitle() << endl;
+                    cout << "Description: " << task[i].getDescription() << endl;
+                    cout << "Deadline: " << task[i].getDate() << endl;
+                    cout << "Status: " << task[i].getStatus() << endl;
+                    cout << endl;
+                    system("pause");
+                    *valid = true;
+                }
+            }
+            break;
+        }else if(*choice == 2){ // pesquisa por Título
+            cout << "Enter the title to search: ";
+            cin.ignore();
+            getline(cin, *title);
+            for(size_t i = 0; i < task.size(); i++){
+                if(task[i].getTitle() == *title){
+                    cout << endl;
+                    cout << "ID: " << task[i].getId() << endl;
+                    cout << "Title: " << task[i].getTitle() << endl;
+                    cout << "Description: " << task[i].getDescription() << endl;
+                    cout << "Deadline: " << task[i].getDate() << endl;
+                    cout << "Status: " << task[i].getStatus() << endl;
+                    cout << endl;
+                    system("pause");
+                    *valid = true;
+                }
+            }
+            break;
+        }else{
+            cout << endl;
+            cout << "Invalid method. Try again." << endl;
+            cout << endl;
+        }
+    }
+    if(!*valid){
+        cout << "Task not found." << endl;
+    }
+    delete choice, valid, id, title;
 }
 void filterTask(vector<Task>& task){
     cout << "Voce escolheu a opcao 5." << endl;
 }
-
-
 
 int main(){
     vector<Task> task; // cria um vetor em que cada posição é um objeto da classe Task
