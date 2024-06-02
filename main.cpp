@@ -102,8 +102,110 @@ void createTask(vector<Task>& task){ // função para adicionar tarefas
                                                                          // função construtora da classe
     delete id, date, title, description, status;
 }
-void editTask(vector<Task>& task){
-    cout << "Voce escolheu a opcao 2." << endl;    
+
+void showTask(vector<Task>& task){ // função para exibir as tarefas
+    for(size_t i = 0; i < task.size(); ++i){
+        cout << "ID: " << task[i].getId() << endl;
+        cout << "Title: " << task[i].getTitle() << endl;
+        cout << "Description: " << task[i].getDescription() << endl;
+        cout << "Deadline: " << task[i].getDate() << endl;
+        cout << "Status: " << task[i].getStatus() << endl;
+        cout << endl;
+    }
+    system("pause");
+} 
+
+void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
+    int *id = new int;
+    bool *valid = new bool(false);
+    string *str = new string;
+    int *num = new int;
+    int *choice = new int;
+
+    cout << "Enter the Task ID to edit it: ";
+    cin >> *id;
+    
+    for(size_t i = 0; i < task.size(); ++i){ // percorre o vetor procurando pela task para editar
+    	if(task[i].getId() == *id){
+            cout << endl;
+            cout << "ID: " << task[i].getId() << endl;
+            cout << "Title: " << task[i].getTitle() << endl;
+            cout << "Description: " << task[i].getDescription() << endl;
+            cout << "Deadline: " << task[i].getDate() << endl;
+            cout << "Status: " << task[i].getStatus() << endl;
+            cout << endl;
+            do{
+                // menu padão da seção de edição
+                cout << endl;
+                cout << "What do you want to edit" << endl;
+                cout << "1. Task Title" << endl;
+                cout << "2. Task Description"<< endl;
+                cout << "3. Task Deadline"<< endl;
+                cout << "4. Task Status"<< endl;
+                cout << "0. Exit Edit" << endl;
+                cout << "Choose an option: "; 
+                cin >> *choice;
+                cout << endl;
+
+                switch(*choice){
+                    case 1:
+                        cout << "Current title: " << task[i].getTitle() << endl;
+                        cout << "Enter the new title: ";
+                        cin.ignore();
+                        getline(cin, *str);
+                        task[i].setTitle(*str);
+                        break;
+                    case 2:
+                        cout << "Current description: " << task[i].getDescription() << endl;
+                        cout << "Enter the new description: ";
+                        cin.ignore();
+                        getline(cin, *str);
+                        task[i].setDescription(*str);
+                        break;
+                    case 3: 
+                        cout << "Current deadline: " << task[i].getDate() << endl;
+                        cout << "Enter the new deadline: ";
+                        cin >> *num;
+                        task[i].setDate(*num);
+                        break;
+                    case 4: 
+                        while(true){
+                            cout << "Current status: " << task[i].getStatus() << endl;
+                            cout << "Enter the new status (1 - Pending, 2 - In Progress, 3 - Completed): ";
+                            cin.ignore();
+                            cin >> *str;
+                            if(*str == "1"){
+                                task[i].setStatus("Pending");
+                                break;
+                            }else if(*str == "2"){
+                                task[i].setStatus("In Progress");
+                                break;
+                            }else if(*str == "3"){
+                                task[i].setStatus("Completed");
+                                break;
+                            }else{
+                                cout << "Invalid Status!" << endl;
+                            }
+                        }
+                        break;
+                    case 0:
+                        *valid = true;
+                        break;
+                    default: 
+                        cout << "Invalid option. Try again." << endl; 
+                        break;
+                }
+            }while(choice != 0);
+            delete choice;
+        	break;
+        }
+	}
+    if(*valid){
+        cout << "Edited Successfully" << endl;
+    }else{
+        cout << "Edit Failed! Task not found." << endl;
+    }
+    delete id, valid;
 }
 
 void deleteTask(vector<Task>& task){
@@ -129,8 +231,7 @@ void deleteTask(vector<Task>& task){
     }else{
         cout << "Delete Failed! Task not found." << endl;
     }
-
-    delete id;
+    delete id, valid;
 }
 void searchTask(vector<Task>& task){
     cout << "Voce escolheu a opcao 4." << endl;
@@ -140,21 +241,10 @@ void filterTask(vector<Task>& task){
 }
 
 
-void showTask(vector<Task>& task){ // função para exibir as tarefas
-    for(size_t i = 0; i < task.size(); ++i){
-        cout << "ID: " << task[i].getId() << endl;
-        cout << "Title: " << task[i].getTitle() << endl;
-        cout << "Description: " << task[i].getDescription() << endl;
-        cout << "Deadline: " << task[i].getDate() << endl;
-        cout << "Status: " << task[i].getStatus() << endl;
-        cout << endl;
-    }
-    system("pause");
-}
 
 int main(){
     vector<Task> task; // cria um vetor em que cada posição é um objeto da classe Task
-    int choice;
+    int *choice = new int;
 
     do{ 
         // Exibição de menu padrão no terminal
@@ -168,11 +258,11 @@ int main(){
         cout << "6. Filter Tasks by Status" << endl;
         cout << "0. Exit" << endl;
         cout << "Choose an option: "; 
-        cin >> choice;
+        cin >> *choice;
         cout << endl;
         
         // switch case para as opcoes do menu
-        switch (choice){
+        switch (*choice){
             case 0: return false; break;
             case 1: createTask(task); break;
             case 2: showTask(task); break;
@@ -183,5 +273,6 @@ int main(){
             default: cout << "Invalid option. Try again." << endl; break;
         }
     }while(true);
+    delete choice;
     return 0;
 }
