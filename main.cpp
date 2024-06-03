@@ -67,7 +67,18 @@ void createTask(vector<Task>& task){ // função para adicionar tarefas
     string *description = new string;
     string *status = new string;
 
-    cout << "Add new Task" << endl;
+    cout << (char)201;
+    for(size_t i = 0; i < 18; i++){
+        cout << (char)205;
+    }
+    cout << (char)187 << endl;
+    cout << (char)186 << "   Add new Task   " << (char)186 << endl;
+    cout << (char)200;
+    for(size_t i = 0; i < 18; i++){
+        cout << (char)205;
+    }
+    cout << (char)188 << endl;
+
     cout << "ID: " << *id << endl;
 
     cout << "Title: ";
@@ -96,24 +107,43 @@ void createTask(vector<Task>& task){ // função para adicionar tarefas
             cout << "Invalid Status!" << endl;
         }
     }
+    cout << endl;
     cout << "Task added successfully!" << endl;
+    cout << endl;
+    system("pause");
 
     task.push_back(Task(*id, *title, *description, *date, *status)); // Insere os valores dos atributos do objeto por meio da 
-                                                                         // função construtora da classe
+                                                                     // função construtora da classe
     delete id, date, title, description, status;
 }
 
 void showTask(vector<Task>& task){ // função para exibir as tarefas
+    cout << (char)201;
+    for(size_t i = 0; i < 19; i++){
+        cout << (char)205;
+    }
+    cout << (char)187 << endl;
+    cout << (char)186 << "   Showing Tasks   " << (char)186 << endl;
+    cout << (char)200;
+    for(size_t i = 0; i < 19; i++){
+        cout << (char)205;
+    }
+    cout << (char)188 << endl;
     for(size_t i = 0; i < task.size(); ++i){
+        cout << endl;
         cout << "ID: " << task[i].getId() << endl;
         cout << "Title: " << task[i].getTitle() << endl;
         cout << "Description: " << task[i].getDescription() << endl;
         cout << "Deadline: " << task[i].getDate() << endl;
         cout << "Status: " << task[i].getStatus() << endl;
         cout << endl;
+        for(size_t i = 0; i < 19; i++){
+            cout << (char)205;
+        }
     }
+    cout << endl;
+    cout << endl;
     system("pause");
-    system("clear||cls");
 } 
 
 void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
@@ -121,6 +151,18 @@ void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
     bool *valid = new bool(false);
     int *choice = new int;
     string *str = new string;
+
+    cout << (char)201;
+    for(size_t i = 0; i < 15; i++){
+        cout << (char)205;
+    }
+    cout << (char)187 << endl;
+    cout << (char)186 << "   Edit Task   " << (char)186 << endl;
+    cout << (char)200;
+    for(size_t i = 0; i < 15; i++){
+        cout << (char)205;
+    }
+    cout << (char)188 << endl;
 
     cout << "Enter the Task ID to edit it: ";
     cin >> *id;
@@ -200,9 +242,15 @@ void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
         }
 	}
     if(*valid){
+        cout << endl;
         cout << "Edited Successfully" << endl;
+        cout << endl;
+        system("pause");
     }else{
+        cout << endl;
         cout << "Edit Failed! Task not found." << endl;
+        cout << endl;
+        system("pause");
     }
     delete id, valid, choice;
 }
@@ -210,6 +258,18 @@ void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
 void deleteTask(vector<Task>& task){ // função para deletar a tarefa indicada
     int *id = new int;
     bool *valid = new bool(false);
+
+    cout << (char)201;
+    for(size_t i = 0; i < 17; i++){
+        cout << (char)205;
+    }
+    cout << (char)187 << endl;
+    cout << (char)186 << "   Delete Task   " << (char)186 << endl;
+    cout << (char)200;
+    for(size_t i = 0; i < 17; i++){
+        cout << (char)205;
+    }
+    cout << (char)188 << endl;
 
     cout << "Enter the Task ID to delete it: ";
     cin >> *id;
@@ -225,12 +285,19 @@ void deleteTask(vector<Task>& task){ // função para deletar a tarefa indicada
         }
 	}
     if(*valid){
+        cout << endl;
         cout << "Deleted Successfully" << endl;
+        cout << endl;
+        system("pause");
     }else{
+        cout << endl;
         cout << "Delete Failed! Task not found." << endl;
+        cout << endl;
+        system("pause");
     }
     delete id, valid;
 }
+
 void searchTask(vector<Task>& task){ // função para pesquisar tarefas por ID e Nome
     bool *valid = new bool(false);
     int *choice = new int;
@@ -239,9 +306,21 @@ void searchTask(vector<Task>& task){ // função para pesquisar tarefas por ID e
 
     while(true){
         // menu padrão da função search
-        cout << "Search for tasks by" << endl;
-        cout << "1. Task ID" << endl;
-        cout << "2. Task Title"<< endl;
+
+        cout << (char)201;
+        for(size_t i = 0; i < 25; i++){
+            cout << (char)205;
+        }
+        cout << (char)187 << endl;
+        cout << (char)186 << "   Search for tasks by   " << (char)186 << endl;
+        cout << (char)186 << " 1. Task ID              " << (char)186 << endl;
+        cout << (char)186 << " 2. Task Title           "<< (char)186 << endl;
+        cout << (char)200;
+        for(size_t i = 0; i < 25; i++){
+            cout << (char)205;
+        }
+        cout << (char)188 << endl;
+        
         cout << "Choose a method: ";
         cin >> *choice;
     
@@ -288,12 +367,81 @@ void searchTask(vector<Task>& task){ // função para pesquisar tarefas por ID e
         }
     }
     if(!*valid){
+        cout << endl;
         cout << "Task not found." << endl;
+        cout << endl;
+        system("pause");
     }
     delete choice, valid, id, title;
 }
+
 void filterTask(vector<Task>& task){
-    cout << "Voce escolheu a opcao 5." << endl;
+    int *op = new int;
+    while(true){
+        cout << (char)201;
+        for(size_t i = 0; i < 26; i++){
+            cout << (char)205;
+        }
+        cout << (char)187 << endl;
+        cout << (char)186 << "  Filter tasks by status  " << (char)186 << endl;
+        cout << (char)186 << " 1. Pending               " << (char)186 << endl; 
+        cout << (char)186 << " 2. In Progress           " << (char)186 << endl; 
+        cout << (char)186 << " 3. Completed             " << (char)186 << endl;
+        cout << (char)200;
+        for(size_t i = 0; i < 26; i++){
+            cout << (char)205;
+        }
+        cout << (char)188 << endl;
+        cout << "Choose a status: ";
+        cin.ignore();
+        cin >> *op;
+        if(*op == 1){
+            for(size_t i = 0; i < task.size(); ++i){
+                if(task[i].getStatus() == "Pending"){
+                    cout << endl;
+                    cout << "ID: " << task[i].getId() << endl;
+                    cout << "Title: " << task[i].getTitle() << endl;
+                    cout << "Description: " << task[i].getDescription() << endl;
+                    cout << "Deadline: " << task[i].getDate() << endl;
+                    cout << "Status: " << task[i].getStatus() << endl;
+                }
+            }
+            cout << endl;
+            system("pause");
+            break;
+        }else if(*op == 2){
+            for(size_t i = 0; i < task.size(); ++i){
+                if(task[i].getStatus() == "In Progress"){
+                    cout << endl;
+                    cout << "ID: " << task[i].getId() << endl;
+                    cout << "Title: " << task[i].getTitle() << endl;
+                    cout << "Description: " << task[i].getDescription() << endl;
+                    cout << "Deadline: " << task[i].getDate() << endl;
+                    cout << "Status: " << task[i].getStatus() << endl;
+                }
+            }
+            cout << endl;
+            system("pause");
+            break;
+        }else if(*op == 3){
+            for(size_t i = 0; i < task.size(); ++i){
+                if(task[i].getStatus() == "Completed"){
+                    cout << endl;
+                    cout << "ID: " << task[i].getId() << endl;
+                    cout << "Title: " << task[i].getTitle() << endl;
+                    cout << "Description: " << task[i].getDescription() << endl;
+                    cout << "Deadline: " << task[i].getDate() << endl;
+                    cout << "Status: " << task[i].getStatus() << endl;
+                }    
+            }
+            cout << endl;
+            system("pause");
+            break;
+        }else{
+            cout << "Invalid Status!" << endl;
+        }
+    }
+    delete op;
 }
 
 int main(){
@@ -302,7 +450,7 @@ int main(){
 
     do{ 
         // Exibição de menu padrão no terminal
-        cout << endl;
+        system("clear||cls");
         cout << (char)201;
         for(size_t i = 0; i < 31; i++){
             cout << (char)205;
@@ -327,13 +475,13 @@ int main(){
         
         // switch case para as opcoes do menu
         switch (*choice){
-            case 0: return false; break;
-            case 1: createTask(task); break;
-            case 2: showTask(task); break;
-            case 3: editTask(task); break;
-            case 4: deleteTask(task); break;
-            case 5: searchTask(task); break;
-            case 6: filterTask(task); break;
+            case 0: return 0; break;
+            case 1: system("clear||cls"); createTask(task); break;
+            case 2: system("clear||cls"); showTask(task); break;
+            case 3: system("clear||cls"); editTask(task); break;
+            case 4: system("clear||cls"); deleteTask(task); break;
+            case 5: system("clear||cls"); searchTask(task); break;
+            case 6: system("clear||cls"); filterTask(task); break;
             default: cout << "Invalid option. Try again." << endl; break;
         }
     }while(true);
