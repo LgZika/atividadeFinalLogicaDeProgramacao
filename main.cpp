@@ -237,7 +237,7 @@ void editTask(vector<Task>& task){ // edita os atributos da tarefa indicada
                         cout << "Invalid option. Try again." << endl; 
                         break;
                 }
-            }while(choice != 0);
+            }while(*choice != 0);
         	break;
         }
 	}
