@@ -1,6 +1,8 @@
-# Task Manager System
+# 📋 Task Manager System 📋
 
-## General Vision
+## 📎 General Vision
+
+![Main Screen Image](./docs/images/mainScreen0.png)
 
 O software permite aos usuários criar, visualizar e gerenciar suas tarefas e afazeres de maneira eficiente.
 
