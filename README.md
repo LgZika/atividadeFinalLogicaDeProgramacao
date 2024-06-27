@@ -12,7 +12,9 @@ Com uma interface amigável no terminal busca entregar um uso simples no dia a d
 
 ## Overview
 
-O software apresenta diversas telas para facilitar a utilização do usuário e manter o terminal de maneira limpa e organizada:
+O software apresenta diversas funcionalidades para facilitar a utilização do usuário e manter o terminal de maneira limpa e organizada:
+
+## User Guide
 
 * ### Main Screen
     A tela principal do Softaware. Aqui o usuário é apresentado à todas as funcionalidades da aplicação.
